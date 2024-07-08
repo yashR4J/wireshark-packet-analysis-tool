@@ -1,19 +1,19 @@
 #include <catch.h>
 #include "lib/net.h"
-#include "lib/zoom.h"
+#include "lib/teams.h"
 
 #include "test_packets.h"
 
-TEST_CASE("zoom::parse_zoom_pkt_buf: parses a srv-based video packet", "[zoom][parse]") {
+TEST_CASE("teams::parse_teams_pkt_buf: parses a srv-based video packet", "[teams][parse]") {
 
-    auto hdr = zoom::parse_zoom_pkt_buf(test::zoom_srv_video_buf, true, false);
+    auto hdr = teams::parse_teams_pkt_buf(test::teams_srv_video_buf, true, false);
 
     CHECK(hdr.ip != nullptr);
     CHECK(hdr.udp != nullptr);
-    CHECK(hdr.zoom_outer != nullptr);
-    CHECK(hdr.zoom_outer[0] == zoom::SRV_MEDIA_TYPE);
-    CHECK(hdr.zoom_inner != nullptr);
-    CHECK(hdr.zoom_inner[0] == zoom::VIDEO_TYPE);
+    CHECK(hdr.teams_outer != nullptr);
+    CHECK(hdr.teams_outer[0] == teams::SRV_MEDIA_TYPE);
+    CHECK(hdr.teams_inner != nullptr);
+    CHECK(hdr.teams_inner[0] == teams::VIDEO_TYPE);
     CHECK(hdr.rtp != nullptr);
     CHECK(hdr.rtp->payload_type() == 98);
     CHECK(hdr.rtp->seq == htons(7715));
@@ -24,15 +24,15 @@ TEST_CASE("zoom::parse_zoom_pkt_buf: parses a srv-based video packet", "[zoom][p
     CHECK(hdr.rtp_ext1[2] == 0x00);
 }
 
-TEST_CASE("zoom::parse_zoom_pkt_buf: parses a p2p audio packet", "[zoom][parse]") {
+TEST_CASE("teams::parse_teams_pkt_buf: parses a p2p audio packet", "[teams][parse]") {
 
-    auto hdr = zoom::parse_zoom_pkt_buf(test::zoom_p2p_audio_buf, true, true);
+    auto hdr = teams::parse_teams_pkt_buf(test::teams_p2p_audio_buf, true, true);
 
     CHECK(hdr.ip != nullptr);
     CHECK(hdr.udp != nullptr);
-    CHECK(hdr.zoom_outer == nullptr);
-    CHECK(hdr.zoom_inner != nullptr);
-    CHECK(hdr.zoom_inner[0] == zoom::AUDIO_TYPE);
+    CHECK(hdr.teams_outer == nullptr);
+    CHECK(hdr.teams_inner != nullptr);
+    CHECK(hdr.teams_inner[0] == teams::AUDIO_TYPE);
     CHECK(hdr.rtp != nullptr);
     CHECK(hdr.rtp->payload_type() == 99);
     CHECK(hdr.rtp->seq == htons(26820));
@@ -43,15 +43,15 @@ TEST_CASE("zoom::parse_zoom_pkt_buf: parses a p2p audio packet", "[zoom][parse]"
     CHECK(hdr.rtp_ext1[2] == 0x00);
 }
 
-TEST_CASE("zoom::parse_zoom_pkt_buf: parses a p2p screen share packet", "[zoom][parse]") {
+TEST_CASE("teams::parse_teams_pkt_buf: parses a p2p screen share packet", "[teams][parse]") {
 
-    auto hdr = zoom::parse_zoom_pkt_buf(test::zoom_p2p_screenshare_buf, true, true);
+    auto hdr = teams::parse_teams_pkt_buf(test::teams_p2p_screenshare_buf, true, true);
 
     CHECK(hdr.ip != nullptr);
     CHECK(hdr.udp != nullptr);
-    CHECK(hdr.zoom_outer == nullptr);
-    CHECK(hdr.zoom_inner != nullptr);
-    CHECK(hdr.zoom_inner[0] == zoom::P2P_SCREEN_SHARE_TYPE);
+    CHECK(hdr.teams_outer == nullptr);
+    CHECK(hdr.teams_inner != nullptr);
+    CHECK(hdr.teams_inner[0] == teams::P2P_SCREEN_SHARE_TYPE);
     CHECK(hdr.rtp != nullptr);
     CHECK(hdr.rtp->payload_type() == 99);
     CHECK(hdr.rtp->seq == htons(57697));
@@ -62,15 +62,15 @@ TEST_CASE("zoom::parse_zoom_pkt_buf: parses a p2p screen share packet", "[zoom][
     CHECK(hdr.rtp_ext1[2] == 0x00);
 }
 
-TEST_CASE("zoom::parse_zoom_pkt_buf: parses a srv-based screen share packet", "[zoom][parse]") {
+TEST_CASE("teams::parse_teams_pkt_buf: parses a srv-based screen share packet", "[teams][parse]") {
 
-    auto hdr = zoom::parse_zoom_pkt_buf(test::zoom_srv_screenshare_buf, true, false);
+    auto hdr = teams::parse_teams_pkt_buf(test::teams_srv_screenshare_buf, true, false);
 
     CHECK(hdr.ip != nullptr);
     CHECK(hdr.udp != nullptr);
-    CHECK(hdr.zoom_outer != nullptr);
-    CHECK(hdr.zoom_inner != nullptr);
-    CHECK(hdr.zoom_inner[0] == zoom::SRV_SCREEN_SHARE_TYPE);
+    CHECK(hdr.teams_outer != nullptr);
+    CHECK(hdr.teams_inner != nullptr);
+    CHECK(hdr.teams_inner[0] == teams::SRV_SCREEN_SHARE_TYPE);
     CHECK(hdr.rtp != nullptr);
     CHECK(hdr.rtp->payload_type() == 99);
     CHECK(hdr.rtp->seq == htons(7172));
@@ -81,15 +81,15 @@ TEST_CASE("zoom::parse_zoom_pkt_buf: parses a srv-based screen share packet", "[
     CHECK(hdr.rtp_ext1[2] == 0x00);
 }
 
-TEST_CASE("zoom::parse_zoom_pkt_buf: parses a srv-based RTCP packet", "[zoom][parse]") {
+TEST_CASE("teams::parse_teams_pkt_buf: parses a srv-based RTCP packet", "[teams][parse]") {
 
-    auto hdr = zoom::parse_zoom_pkt_buf(test::zoom_srv_rtcp_buf, true, false);
+    auto hdr = teams::parse_teams_pkt_buf(test::teams_srv_rtcp_buf, true, false);
 
     CHECK(hdr.ip != nullptr);
     CHECK(hdr.udp != nullptr);
-    CHECK(hdr.zoom_outer != nullptr);
-    CHECK(hdr.zoom_inner != nullptr);
-    CHECK(hdr.zoom_inner[0] == zoom::RTCP_SR_SD_TYPE);
+    CHECK(hdr.teams_outer != nullptr);
+    CHECK(hdr.teams_inner != nullptr);
+    CHECK(hdr.teams_inner[0] == teams::RTCP_SR_SD_TYPE);
     CHECK(hdr.rtp == nullptr);
     CHECK(hdr.rtcp != nullptr);
 
@@ -107,15 +107,15 @@ TEST_CASE("zoom::parse_zoom_pkt_buf: parses a srv-based RTCP packet", "[zoom][pa
     CHECK(hdr.rtcp->msg.sr.sender_byte_count == ntohl(231506));
 }
 
-TEST_CASE("zoom::parse_zoom_pkt_buf: parses a P2P RTCP packet", "[zoom][parse]") {
+TEST_CASE("teams::parse_teams_pkt_buf: parses a P2P RTCP packet", "[teams][parse]") {
 
-    auto hdr = zoom::parse_zoom_pkt_buf(test::zoom_p2p_rtcp_buf, true, true);
+    auto hdr = teams::parse_teams_pkt_buf(test::teams_p2p_rtcp_buf, true, true);
 
     CHECK(hdr.ip != nullptr);
     CHECK(hdr.udp != nullptr);
-    CHECK(hdr.zoom_outer == nullptr);
-    CHECK(hdr.zoom_inner != nullptr);
-    CHECK(hdr.zoom_inner[0] == zoom::RTCP_SR_SD_TYPE);
+    CHECK(hdr.teams_outer == nullptr);
+    CHECK(hdr.teams_inner != nullptr);
+    CHECK(hdr.teams_inner[0] == teams::RTCP_SR_SD_TYPE);
     CHECK(hdr.rtp == nullptr);
     CHECK(hdr.rtcp != nullptr);
 

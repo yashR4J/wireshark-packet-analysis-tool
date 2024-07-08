@@ -1,5 +1,5 @@
-#ifndef ZOOM_ANALYSIS_RING_BUFFER_H
-#define ZOOM_ANALYSIS_RING_BUFFER_H
+#ifndef TEAMS_ANALYSIS_RING_BUFFER_H
+#define TEAMS_ANALYSIS_RING_BUFFER_H
 
 #include <algorithm>
 #include <cassert>

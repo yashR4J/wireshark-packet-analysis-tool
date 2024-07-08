@@ -38,8 +38,8 @@ namespace test {
      * Ethernet II, Src: Cisco_74:5f:41 (d8:67:d9:74:5f:41), Dst: Apple_7a:fa:ad (ac:bc:32:7a:fa:ad)
      * Internet Protocol Version 4, Src: 144.195.52.3 (144.195.52.3), Dst: 10.9.121.28 (10.9.121.28)
      * User Datagram Protocol, Src Port: 8801, Dst Port: 65027
-     * Zoom Server Encapsulation
-     * Zoom Media Encapsulation
+     * Teams Server Encapsulation
+     * Teams Media Encapsulation
      * Real-Time Transport Protocol
      *     10.. .... = Version: RFC 1889 Version (2)
      *     ..0. .... = Padding: False
@@ -56,7 +56,7 @@ namespace test {
      * H.264
      */
 
-    static unsigned char zoom_srv_video_buf[] = {
+    static unsigned char teams_srv_video_buf[] = {
             0xac, 0xbc, 0x32, 0x7a, 0xfa, 0xad, 0xd8, 0x67,
             0xd9, 0x74, 0x5f, 0x41, 0x08, 0x00, 0x45, 0x00,
             0x03, 0x93, 0xbe, 0xb4, 0x40, 0x00, 0x29, 0x11,
@@ -80,7 +80,7 @@ namespace test {
      * Ethernet II, Src: binford3800.local (ac:bc:32:7a:fa:ad), Dst: Apple_e3:1d:39 (a4:83:e7:e3:1d:39)
      * Internet Protocol Version 4, Src: binford3800.local (10.9.121.28), Dst: 10.9.74.172 (10.9.74.172)
      * User Datagram Protocol, Src Port: 50508, Dst Port: 64904
-     * Zoom Media Encapsulation
+     * Teams Media Encapsulation
      * Real-Time Transport Protocol
      *     10.. .... = Version: RFC 1889 Version (2)
      *     ..0. .... = Padding: False
@@ -96,7 +96,7 @@ namespace test {
      *     Header extensions
      */
 
-    static unsigned char zoom_p2p_audio_buf[] = {
+    static unsigned char teams_p2p_audio_buf[] = {
             0xa4, 0x83, 0xe7, 0xe3, 0x1d, 0x39, 0xac, 0xbc,
             0x32, 0x7a, 0xfa, 0xad, 0x08, 0x00, 0x45, 0x00,
             0x00, 0x6c, 0x65, 0xfb, 0x00, 0x00, 0x40, 0x11,
@@ -120,7 +120,7 @@ namespace test {
      * Ethernet II, Src: Apple_e3:1d:39 (a4:83:e7:e3:1d:39), Dst: binford3800.local (ac:bc:32:7a:fa:ad)
      * Internet Protocol Version 4, Src: 10.9.74.172 (10.9.74.172), Dst: binford3800.local (10.9.121.28)
      * User Datagram Protocol, Src Port: 64904, Dst Port: 50508
-     * Zoom Media Encapsulation
+     * Teams Media Encapsulation
      * Real-Time Transport Protocol
      *     10.. .... = Version: RFC 1889 Version (2)
      *     ..0. .... = Padding: False
@@ -136,7 +136,7 @@ namespace test {
      *     Header extensions
      */
 
-    static unsigned char zoom_p2p_screenshare_buf[] = {
+    static unsigned char teams_p2p_screenshare_buf[] = {
             0xac, 0xbc, 0x32, 0x7a, 0xfa, 0xad, 0xa4, 0x83,
             0xe7, 0xe3, 0x1d, 0x39, 0x08, 0x00, 0x45, 0x00,
             0x04, 0x29, 0x15, 0x49, 0x00, 0x00, 0x40, 0x11,
@@ -162,8 +162,8 @@ namespace test {
      * Ethernet II, Src: CeLink_61:d2:71 (a0:ce:c8:61:d2:71), Dst: Routerbo_b7:9d:c8 (6c:3b:6b:b7:9d:c8)
      * Internet Protocol Version 4, Src: binford3900.local (172.16.21.52), Dst: 206.247.8.30 (206.247.8.30)
      * User Datagram Protocol, Src Port: 53772, Dst Port: 8801
-     * Zoom Server Encapsulation
-     * Zoom Media Encapsulation
+     * Teams Server Encapsulation
+     * Teams Media Encapsulation
      *     Type: 13 (Screen Share)
      *     T13 Sequence number 1: 29250
      *     T13 Sequence number 2: 1570
@@ -183,7 +183,7 @@ namespace test {
      *     Header extensions
      */
 
-    static unsigned char zoom_srv_screenshare_buf[] = {
+    static unsigned char teams_srv_screenshare_buf[] = {
             0x6c, 0x3b, 0x6b, 0xb7, 0x9d, 0xc8, 0xa0, 0xce,
             0xc8, 0x61, 0xd2, 0x71, 0x08, 0x00, 0x45, 0x00,
             0x04, 0x45, 0xea, 0xab, 0x00, 0x00, 0x40, 0x11,
@@ -207,10 +207,10 @@ namespace test {
     /*
      * Frame 11793: 106 bytes on wire (848 bits), 106 bytes captured (848 bits) on interface unknown, id 0
      * Ethernet II, Src: binford3800.local (ac:bc:32:7a:fa:ad), Dst: Cisco_9f:f7:d0 (00:00:0c:9f:f7:d0)
-     * Internet Protocol Version 4, Src: binford3800.local (10.9.121.28), Dst: zoomsjcca3mmr.sjc.zoom.us (144.195.52.3)
+     * Internet Protocol Version 4, Src: binford3800.local (10.9.121.28), Dst: Teamssjcca3mmr.sjc.Teams.us (144.195.52.3)
      * User Datagram Protocol, Src Port: 63567, Dst Port: 8801
-     * Zoom SFU Encapsulation
-     * Zoom Media Encapsulation
+     * Teams SFU Encapsulation
+     * Teams Media Encapsulation
      * Real-time Transport Control Protocol (Sender Report)
      *     10.. .... = Version: RFC 1889 Version (2)
      *     ..0. .... = Padding: False
@@ -227,7 +227,7 @@ namespace test {
      * Real-time Transport Control Protocol (Source description)
      */
 
-    static unsigned char zoom_srv_rtcp_buf[] = {
+    static unsigned char teams_srv_rtcp_buf[] = {
             0x00, 0x00, 0x0c, 0x9f, 0xf7, 0xd0, 0xac, 0xbc,
             0x32, 0x7a, 0xfa, 0xad, 0x08, 0x00, 0x45, 0x00,
             0x00, 0x5c, 0x74, 0x76, 0x00, 0x00, 0x40, 0x11,
@@ -249,7 +249,7 @@ namespace test {
      * Ethernet II, Src: Apple_e3:1d:39 (a4:83:e7:e3:1d:39), Dst: binford3800.local (ac:bc:32:7a:fa:ad)
      * Internet Protocol Version 4, Src: 10.9.74.172 (10.9.74.172), Dst: binford3800.local (10.9.121.28)
      * User Datagram Protocol, Src Port: 64904, Dst Port: 50508
-     * Zoom Media Encapsulation
+     * Teams Media Encapsulation
      * Real-time Transport Control Protocol (Sender Report)
      *     10.. .... = Version: RFC 1889 Version (2)
      *     ..0. .... = Padding: False
@@ -266,7 +266,7 @@ namespace test {
      * Real-time Transport Control Protocol (Source description)
      */
 
-    static unsigned char zoom_p2p_rtcp_buf[] = {
+    static unsigned char teams_p2p_rtcp_buf[] = {
             0xac, 0xbc, 0x32, 0x7a, 0xfa, 0xad, 0xa4, 0x83,
             0xe7, 0xe3, 0x1d, 0x39, 0x08, 0x00, 0x45, 0x00,
             0x00, 0x54, 0xaa, 0x2b, 0x00, 0x00, 0x40, 0x11,
@@ -311,8 +311,8 @@ namespace test {
      * Ethernet II, Src: 00:00:03:05:66:45, Dst: 00:00:00:55:ce:a3
      * Internet Protocol Version 4, Src: 206.247.55.22, Dst: 10.8.102.141
      * User Datagram Protocol, Src Port: 8801, Dst Port: 59034
-     * Zoom SFU Encapsulation
-     * Zoom Media Encapsulation
+     * Teams SFU Encapsulation
+     * Teams Media Encapsulation
      * Real-Time Transport Protocol
      *     10.. .... = Version: RFC 1889 Version (2)
      *     ..0. .... = Padding: False
@@ -329,7 +329,7 @@ namespace test {
      * H.264
      */
 
-    static unsigned char zoom_srv_video_short_buf[] = {
+    static unsigned char teams_srv_video_short_buf[] = {
             0x00, 0x00, 0x00, 0x55, 0xce, 0xa3, 0x00, 0x00,
             0x03, 0x05, 0x66, 0x45, 0x08, 0x00, 0x45, 0x20,
             0x02, 0x33, 0x8c, 0x55, 0x40, 0x00, 0x31, 0x11,

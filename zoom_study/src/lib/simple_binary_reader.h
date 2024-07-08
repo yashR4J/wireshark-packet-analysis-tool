@@ -2,8 +2,8 @@
 #include <vector>
 #include <filesystem>
 
-#ifndef ZOOM_ANALYSIS_SIMPLE_BINARY_READER_H
-#define ZOOM_ANALYSIS_SIMPLE_BINARY_READER_H
+#ifndef TEAMS_ANALYSIS_SIMPLE_BINARY_READER_H
+#define TEAMS_ANALYSIS_SIMPLE_BINARY_READER_H
 
 #include "file_stream.h"
 

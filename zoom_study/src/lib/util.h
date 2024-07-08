@@ -1,6 +1,6 @@
 
-#ifndef ZOOM_ANALYSIS_UTIL_H
-#define ZOOM_ANALYSIS_UTIL_H
+#ifndef TEAMS_ANALYSIS_UTIL_H
+#define TEAMS_ANALYSIS_UTIL_H
 
 #include <algorithm>
 #include <chrono>

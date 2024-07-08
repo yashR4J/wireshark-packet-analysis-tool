@@ -7,7 +7,7 @@ import argparse
 
 SEND_IFACE = "veth1"
 
-parser = argparse.ArgumentParser(description="Send packets to a network interface; designed to test our Zoom capture Tofino program.")
+parser = argparse.ArgumentParser(description="Send packets to a network interface; designed to test our Teams capture Tofino program.")
 parser.add_argument('-i','--interface', help="Interface on which packets are sent.", default=SEND_IFACE, required=False)
 parser.add_argument('-t','--type', help="Type of packet. Options: server, stun, p2p, other", required=True)
 args = vars(parser.parse_args())

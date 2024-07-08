@@ -1,5 +1,5 @@
 ---
-title: "5 min. Zoom Test Trace: Meetings"
+title: "5 min. Teams Test Trace: Meetings"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -20,7 +20,7 @@ colors <- c("#22528E", "#882111", "#3D8926")
 
 ```{r import}
 meetings <- read_csv(params$input_file, show_col_types = FALSE) %>%
-  mutate(conn_type = as.factor(conn_type), zoom_type = as.factor(zoom_type))
+  mutate(conn_type = as.factor(conn_type), teams_type = as.factor(teams_type))
 ```
 
 ### Summary
@@ -35,9 +35,9 @@ list(
 
 ```{r}
 meetings %>%
-  group_by(stream_id, zoom_type) %>%
+  group_by(stream_id, teams_type) %>%
   summarize(.groups="keep") %>%
-  group_by(zoom_type) %>%
+  group_by(teams_type) %>%
   summarize(count = n(), .groups="keep") %>%
   arrange(-count)
 ```
@@ -48,11 +48,11 @@ meetings %>%
 
 ```{r stream-duplicates}
 meetings %>%
-  group_by(stream_id, zoom_type) %>%
+  group_by(stream_id, teams_type) %>%
   summarize(n = n(), .groups="keep") %>%
   filter(n > 1 & n <= 20) %>%
   ggplot(aes(x=factor(n))) +
-    geom_bar(stat="count", aes(fill=zoom_type)) +
+    geom_bar(stat="count", aes(fill=teams_type)) +
     scale_fill_manual(name="Type",values=colors, labels=c("Screen S.", "Audio", "Video")) +
     labs(x="# Stream Duplicates", y="Frequency") +
     theme_om()
@@ -128,9 +128,9 @@ participants <- meetings %>%
   summarize(
     start_ts_s = min(start_ts_s),
     end_ts_s = max(end_ts_s),
-    audio = 15 %in% unique(zoom_type),
-    video = 16 %in% unique(zoom_type),
-    screen = 13 %in% unique(zoom_type),
+    audio = 15 %in% unique(teams_type),
+    video = 16 %in% unique(teams_type),
+    screen = 13 %in% unique(teams_type),
     start_ts_min = as.integer(min(start_ts_s) / 60), # 60s buckets
     end_ts_min = as.integer(max(end_ts_s) / 60),
     .groups="keep"
@@ -194,7 +194,7 @@ participants %>%
 
 ```{r frac-speaking, fig.width=4, fig.height=3.8}
 meetings %>%
-  filter(zoom_type == 15 & audio_112_pkts > 0) %>%
+  filter(teams_type == 15 & audio_112_pkts > 0) %>%
   mutate(
     audio_112_frac = audio_112_pkts / (audio_99_pkts + audio_112_pkts),
   ) %>%

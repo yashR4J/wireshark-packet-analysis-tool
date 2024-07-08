@@ -1,5 +1,5 @@
-#ifndef ZOOM_ANALYSIS_FPS_CALCULATOR_H
-#define ZOOM_ANALYSIS_FPS_CALCULATOR_H
+#ifndef TEAMS_ANALYSIS_FPS_CALCULATOR_H
+#define TEAMS_ANALYSIS_FPS_CALCULATOR_H
 
 #include <cstddef>
 #include <cstdlib>

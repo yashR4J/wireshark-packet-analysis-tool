@@ -2,8 +2,8 @@
 
 ## Dataset
 
-* The example dataset contains 5 minutes of Zoom media packets being sent from a Zoom client
-  * 2 media streams (1 audio, 1 video), 40,749 Zoom media packets
+* The example dataset contains 5 minutes of MS Teams media packets being sent from a MS Teams client
+  * 2 media streams (1 audio, 1 video), 40,749 MS Teams media packets
   * Use the R markdown notebooks as inspiration of the types of analyses possible
   * The examples included are by no means exhaustive and many are not particularly interesting
     or revealing when used on such a small dataset

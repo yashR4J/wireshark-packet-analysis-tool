@@ -1,6 +1,6 @@
 
-#ifndef ZOOM_ANALYSIS_RTCP_H
-#define ZOOM_ANALYSIS_RTCP_H
+#ifndef TEAMS_ANALYSIS_RTCP_H
+#define TEAMS_ANALYSIS_RTCP_H
 
 #include "net.h"
 
