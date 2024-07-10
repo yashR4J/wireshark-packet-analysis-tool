@@ -1,16 +1,16 @@
-## Analyzing Zoom Meeting Characteristics and Performance from Packet Captures
+## Analyzing teams Meeting Characteristics and Performance from Packet Captures
 
-[![build-test](https://github.com/Princeton-Cabernet/zoom-analysis/actions/workflows/build-test.yml/badge.svg)](https://github.com/Princeton-Cabernet/zoom-analysis/actions/workflows/build-test.yml)
+[![build-test](https://github.com/Princeton-Cabernet/teams-analysis/actions/workflows/build-test.yml/badge.svg)](https://github.com/Princeton-Cabernet/teams-analysis/actions/workflows/build-test.yml)
 
-This repository contains tools to analyze various performance-related metrics of Zoom meetings
-solely from packet traces of Zoom traffic. The tools allow inferring the types of media (audio,
+This repository contains tools to analyze various performance-related metrics of teams meetings
+solely from packet traces of teams traffic. The tools allow inferring the types of media (audio,
 video, screen share) used, media bit rates, video frame rates and frame sizes, user participation
 (muted, speaking, silent), and network-related metrics such as frame-level jitter and overall latency
 from *.pcap* data captured using, for example, Wireshark. We also provide a [Wireshark plugin](wireshark) to
-analyze Zoom traffic interactively using the Wireshark UI.
+analyze teams traffic interactively using the Wireshark UI.
 
 The techniques used to extract these metrics and make inferences based on them are described in our paper:
-> Oliver Michel, Satadal Sengupta, Hyojoon Kim, Ravi Netravali, and Jennifer Rexford. 2022. Enabling Passive Measurement of Zoom Performance in Production Networks. In Proceedings of the 22nd ACM Internet Measurement Conference (IMC ’22), October 25–27, 2022, Nice, France. ACM, New York, NY, USA, 17 pages. https://doi.org/10.1145/3517745.3561414
+> Oliver Michel, Satadal Sengupta, Hyojoon Kim, Ravi Netravali, and Jennifer Rexford. 2022. Enabling Passive Measurement of teams Performance in Production Networks. In Proceedings of the 22nd ACM Internet Measurement Conference (IMC ’22), October 25–27, 2022, Nice, France. ACM, New York, NY, USA, 17 pages. https://doi.org/10.1145/3517745.3561414
 
 ### Build Project
 
@@ -32,38 +32,38 @@ make
 
 ### Demo
 
-This distribution includes a small (5 min) data set that contains two Zoom media streams. Use the
+This distribution includes a small (5 min) data set that contains two teams media streams. Use the
 analysis scripts and Makefile in [*/data*](data) to generate a set of reports and plots describing
 this  data.
 
 ### Applications
 
-#### zoom_flows
+#### teams_flows
 
-Extracts packets associated with Zoom and prints per-flow statistics.
+Extracts packets associated with teams and prints per-flow statistics.
 * reads all files in directory in lexicographical order of file names if *-i* is a directory path
 * writes flow-level statistics to CSV if *-f* specified
-* writes Zoom type statistics to CSV if *-t* specified
-* writes Zoom-related packets to PCAP if *-p* specified
+* writes Teams type statistics to CSV if *-t* specified
+* writes Teams-related packets to PCAP if *-p* specified
 * generates time series of packet and byte rate in 1s buckets if *-r* specified
-* writes records for Zoom packets to custom binary format if *-z* specified
+* writes records for Teams packets to custom binary format if *-z* specified
 * only considers/filters P2P and STUN packets if *-2* specified (flow summary will still include all flows)
 
 ```
-usage: zoom_flows [OPTION...]
+usage: teams_flows [OPTION...]
   -i, --in IN.pcap or IN/  input file/path
   -f, --flows-out OUT.csv  flow summary output file (optional)
   -t, --types-out OUT.csv  type summary output file (optional)
   -p, --pcap-out OUT.pcap  filtered pcap output file (optional)
   -r, --rate-out OUT.csv   rate time series output file (optional)
-  -z, --zpkt-out OUT.zpkt  zoom packets binary output file (optional)
+  -z, --zpkt-out OUT.zpkt  Teams packets binary output file (optional)
   -2, --p2p-only           only process STUN and P2P packets (optional)
   -h, --help               print this help message
 ```
 
-#### zoom_rtp
+#### teams_rtp
 
-Collects statistics about RTP streams in Zoom traffic.
+Collects statistics about RTP streams in Teams traffic.
 * reads the *.zpkt* input file at the path specified by *-i*
 * writes RTP-stream-level statistics to CSV if *-s* specified
 * writes a detailed packet log to CSV if *-p* specified
@@ -71,7 +71,7 @@ Collects statistics about RTP streams in Zoom traffic.
 * writes performance-related statistics in 1s intervals to CSV if *-t* specified
 
 ```
-usage: zoom_rtp [OPTION...]
+usage: teams_rtp [OPTION...]
   -i, --in IN.zpkt           input file
   -s, --streams-out OUT.csv  output path for stream summary (optional)
   -p, --pkts-out OUT.csv     output path for packet log (optional)
@@ -80,7 +80,7 @@ usage: zoom_rtp [OPTION...]
   -h, --help                 print this help message
 ```
 
-#### zoom_meetings
+#### teams_meetings
 
 Groups packets by media streams and meetings.
 * reads the *.zpkt* input file at the path specified by *-i*
@@ -88,7 +88,7 @@ Groups packets by media streams and meetings.
 * writes meetings to CSV if *-m* specified
 
 ```
-usage: zoom_meetings [OPTION...]
+usage: teams_meetings [OPTION...]
   -i, --in IN.zpkt                 input file name
   -u, --unique-out STREAMS.csv     unique streams out file name (optional)
   -m, --meetings-out MEETINGS.csv  meetings out file name (optional)
